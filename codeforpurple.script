@@ -18,7 +18,7 @@ BLACK = (0, 0, 0)
 font = pygame.font.Font(None, 48)
 
 # List of songs
-songs = ["Bloodlust", "carnage", "overdue (purple mix)"]
+songs = ["Bloodlust", "carnage", "overdue "]
 current_song_index = 0
 
 # Function to draw text on the screen
