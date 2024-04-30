@@ -1,0 +1,12 @@
+import pyautogui
+import time
+
+def press_enter():
+    # Simulate pressing the Enter key
+    pyautogui.press('enter')
+
+# Wait for 5 seconds before pressing Enter (adjust this delay as needed)
+time.sleep(5)
+
+# Call the function to press Enter
+press_enter()
