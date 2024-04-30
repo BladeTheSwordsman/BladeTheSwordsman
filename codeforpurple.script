@@ -1,0 +1,62 @@
+import pygame
+import sys
+
+# Initialize Pygame
+pygame.init()
+
+# Set up the screen
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("FNF Menu")
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+# Fonts
+font = pygame.font.Font(None, 48)
+
+# List of songs
+songs = ["Bloodlust", "carnage", "overkill"]
+current_song_index = 0
+
+# Function to draw text on the screen
+def draw_text(text, font, color, x, y):
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.center = (x, y)
+    screen.blit(text_surface, text_rect)
+
+# Main menu function
+def main_menu():
+    while True:
+        screen.fill(BLACK)
+        draw_text("Main Menu", font, WHITE, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4)
+        
+        # Display the list of songs
+        for i, song in enumerate(songs):
+            text = font.render(song, True, WHITE)
+            screen.blit(text, (SCREEN_WIDTH // 2 - text.get_width() // 2, 250 + i * 50))
+            
+        # Highlight the current song
+        pygame.draw.rect(screen, WHITE, (SCREEN_WIDTH // 2 - text.get_width() // 2 - 10, 245 + current_song_index * 50, text.get_width() + 20, text.get_height()), 3)
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    current_song_index = (current_song_index - 1) % len(songs)
+                elif event.key == pygame.K_DOWN:
+                    current_song_index = (current_song_index + 1) % len(songs)
+                elif event.key == pygame.K_RETURN:
+                    # Start the selected song (in this example, just print the selected song)
+                    print("Selected song:", songs[current_song_index])
+
+# Run the main menu function
+if __name__ == "__main__":
+    main_menu()
